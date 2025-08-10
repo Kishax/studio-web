@@ -1,21 +1,18 @@
-// httpモジュールを読み込む
 const http = require('http');
 
-// サーバーのホスト名とポートを設定
-const hostname = '127.0.0.1'; // ローカルホスト
-const port = 8080;
+// App Runnerが指定するポート（8080）を環境変数から取得。
+// ローカルで動かす場合は、代わりに3000番など任意のポートを使う。
+const port = process.env.PORT || 3000;
 
-// httpサーバーを作成
+// App Runnerのコンテナ内で外部からの通信を受け付けるため '0.0.0.0' を指定。
+const hostname = '0.0.0.0';
+
 const server = http.createServer((req, res) => {
-  // ステータスコード200（成功）を返す
   res.statusCode = 200;
-  // ヘッダーにContent-Typeをプレーンテキストとして設定
   res.setHeader('Content-Type', 'text/plain');
-  // レスポンスの本文として「Hello World」を返す
-  res.end('Hello World\n');
+  res.end('Hello App Runner!\n');
 });
 
-// 指定したポートとホスト名でサーバーを待ち受け状態にする
 server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+  console.log(`Server running on port ${port}`);
 });
