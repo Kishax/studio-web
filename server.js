@@ -3,7 +3,7 @@ const http = require('http');
 
 // サーバーのホスト名とポートを設定
 const hostname = '127.0.0.1'; // ローカルホスト
-const port = 3000;
+const port = 8080;
 
 // httpサーバーを作成
 const server = http.createServer((req, res) => {
